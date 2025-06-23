@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "Login";
+}
+
+<!-- User login form page -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Login</h2>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Login" method="post">
+                        <!-- Username field -->
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" name="username" id="username" class="form-control" required />
+                        </div>
+                        
+                        <!-- Password field -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" id="password" class="form-control" required />
+                        </div>
+                        
+                        <!-- Error messages -->
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <p>@error.ErrorMessage</p>
+                                }
+                            </div>
+                        }
+                        
+                        <!-- Form buttons -->
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <a asp-action="Register" class="btn btn-secondary">
+                                    <i class="fas fa-user-plus"></i> Register
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-sign-in-alt"></i> Login
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
