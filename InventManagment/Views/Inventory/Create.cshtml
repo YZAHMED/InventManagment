@@ -1,38 +1,43 @@
 @model InventManagment.Models.Item
 
 @{
-    ViewData["Title"] = "Add New Item";
+    ViewData["Title"] = "Add Item";
 }
 
+<!-- Form to create a new inventory item -->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="mb-0">Add New Inventory Item</h2>
+                    <h2>Add New Item</h2>
                 </div>
                 <div class="card-body">
                     <form asp-action="Create" method="post" enctype="multipart/form-data">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         
+                        <!-- Item name field -->
                         <div class="mb-3">
                             <label asp-for="Name" class="form-label">Item Name</label>
                             <input asp-for="Name" class="form-control" placeholder="Enter item name" />
                             <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
                         
+                        <!-- Quantity field -->
                         <div class="mb-3">
                             <label asp-for="Quantity" class="form-label">Quantity</label>
                             <input asp-for="Quantity" class="form-control" type="number" min="0" placeholder="Enter quantity" />
                             <span asp-validation-for="Quantity" class="text-danger"></span>
                         </div>
                         
+                        <!-- Image upload field -->
                         <div class="mb-3">
                             <label for="image" class="form-label">Item Image (Optional)</label>
                             <input type="file" name="image" id="image" class="form-control" accept="image/*" />
-                            <div class="form-text">Upload an image for this item (JPG, PNG, GIF)</div>
+                            <div class="form-text">Upload an image for this item</div>
                         </div>
                         
+                        <!-- Form buttons -->
                         <div class="mb-3">
                             <div class="d-flex justify-content-between">
                                 <a asp-action="Index" class="btn btn-secondary">
@@ -54,16 +59,12 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     
     <script>
-        // Preview image before upload
+        // Handle image file selection
         document.getElementById('image').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    // You can add image preview functionality here
-                    console.log('Image selected:', file.name);
-                };
-                reader.readAsDataURL(file);
+                // Could add image preview here later
+                console.log('Image selected:', file.name);
             }
         });
     </script>

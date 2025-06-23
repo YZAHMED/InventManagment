@@ -1,33 +1,36 @@
 @model IEnumerable<InventManagment.Models.Item>
 
 @{
-    ViewData["Title"] = "Inventory Management";
+    ViewData["Title"] = "Inventory";
 }
 
-<div class="container-fluid">
+<!-- Main inventory list page -->
+<div class="container">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h2 class="mb-0">Inventory Items</h2>
+                    <h2>Inventory Items</h2>
                     <a asp-action="Create" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> Add New Item
+                        <i class="fas fa-plus"></i> Add Item
                     </a>
                 </div>
                 <div class="card-body">
                     @if (!Model.Any())
                     {
+                        <!-- Show this when there are no items -->
                         <div class="text-center py-4">
-                            <h4 class="text-muted">No inventory items found</h4>
-                            <p class="text-muted">Start by adding your first item to the inventory.</p>
+                            <h4 class="text-muted">No items yet</h4>
+                            <p>Add your first inventory item to get started.</p>
                             <a asp-action="Create" class="btn btn-primary">Add First Item</a>
                         </div>
                     }
                     else
                     {
+                        <!-- Table showing all inventory items -->
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead class="table-dark">
+                            <table class="table table-striped">
+                                <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Image</th>
@@ -44,10 +47,12 @@
                                             <td>
                                                 @if (!string.IsNullOrEmpty(item.ImagePath))
                                                 {
+                                                    <!-- Show item image if available -->
                                                     <img src="@item.ImagePath" alt="@item.Name" class="img-thumbnail" style="max-width: 50px; max-height: 50px;" />
                                                 }
                                                 else
                                                 {
+                                                    <!-- Placeholder when no image -->
                                                     <div class="bg-secondary text-white rounded d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
                                                         <i class="fas fa-image"></i>
                                                     </div>
@@ -55,19 +60,19 @@
                                             </td>
                                             <td>@item.Name</td>
                                             <td>
+                                                <!-- Color-coded quantity badges -->
                                                 <span class="badge @(item.Quantity > 10 ? "bg-success" : item.Quantity > 0 ? "bg-warning" : "bg-danger")">
                                                     @item.Quantity
                                                 </span>
                                             </td>
                                             <td>
-                                                <div class="btn-group" role="group">
-                                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
-                                                        <i class="fas fa-edit"></i> Edit
-                                                    </a>
-                                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">
-                                                        <i class="fas fa-trash"></i> Delete
-                                                    </a>
-                                                </div>
+                                                <!-- Edit and delete buttons -->
+                                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i> Delete
+                                                </a>
                                             </td>
                                         </tr>
                                     }
@@ -83,10 +88,10 @@
 
 @section Scripts {
     <script>
-        // Add any JavaScript functionality here
+        // Basic page setup
         $(document).ready(function() {
-            // Initialize tooltips
-            $('[data-toggle="tooltip"]').tooltip();
+            // Could add more JavaScript here later
+            console.log('Inventory page loaded');
         });
     </script>
 } 
