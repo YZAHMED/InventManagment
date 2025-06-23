@@ -1,4 +1,5 @@
 using InventManagment.Data;
+using InventManagment.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -25,6 +26,10 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true; // Cookie is only accessible via HTTP
     options.Cookie.IsEssential = true; // Cookie is required for the app to function
 });
+
+// Register business logic services for dependency injection
+// This allows controllers to use the service layer for data operations
+builder.Services.AddScoped<IItemService, ItemService>();
 
 // Configure Swagger for API documentation and testing
 builder.Services.AddSwaggerGen(c =>

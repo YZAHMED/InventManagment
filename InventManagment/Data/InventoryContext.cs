@@ -11,6 +11,7 @@ namespace InventManagment.Data
     /// InventoryContext context = new InventoryContext(options);
     /// var items = context.Items.ToList();
     /// var users = context.Users.ToList();
+    /// var categories = context.Categories.ToList();
     /// </example>
     public class InventoryContext : DbContext
     {
@@ -37,5 +38,26 @@ namespace InventManagment.Data
         /// This allows us to perform CRUD operations on the Users table for authentication
         /// </summary>
         public DbSet<User> Users { get; set; } = default!;
+        
+        /// <summary>
+        /// This DbSet represents the Categories table in the database
+        /// DbSet<Category> tells Entity Framework that there's a table that stores Category objects
+        /// This allows us to perform CRUD operations on the Categories table
+        /// </summary>
+        public DbSet<Category> Categories { get; set; } = default!;
+
+        /// <summary>
+        /// This method is called when the model is being created
+        /// It allows us to configure the many-to-many relationship between Items and Categories
+        /// </summary>
+        /// <param name="modelBuilder">The model builder used to configure the database model</param>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Configure the many-to-many relationship between Items and Categories
+            modelBuilder.Entity<Item>()
+                .HasMany(i => i.Categories)
+                .WithMany(c => c.Items)
+                .UsingEntity(j => j.ToTable("ItemCategories"));
+        }
     }
 }

@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// This is the main model for inventory items in the system
-    /// Each item has an ID, name, quantity, and optional image path
+    /// Each item has an ID, name, quantity, optional image, and can belong to multiple categories
     /// </summary>
     /// <example>
     /// Item item = new Item();
@@ -33,5 +33,11 @@
         /// This is used to display product images in the web interface
         /// </summary>
         public string? ImagePath { get; set; }
+        
+        /// <summary>
+        /// Navigation property for the many-to-many relationship with Categories
+        /// This allows Entity Framework to manage the relationship
+        /// </summary>
+        public ICollection<Category> Categories { get; set; } = new List<Category>();
     }
 }
