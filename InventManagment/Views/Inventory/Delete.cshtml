@@ -1,0 +1,59 @@
+@model InventManagment.Models.Item
+
+@{
+    ViewData["Title"] = "Delete Item";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h2 class="mb-0">Delete Inventory Item</h2>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <h4 class="alert-heading">Warning!</h4>
+                        <p>Are you sure you want to delete this item? This action cannot be undone.</p>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-4">ID:</dt>
+                                <dd class="col-sm-8">@Model.Id</dd>
+                                
+                                <dt class="col-sm-4">Name:</dt>
+                                <dd class="col-sm-8">@Model.Name</dd>
+                                
+                                <dt class="col-sm-4">Quantity:</dt>
+                                <dd class="col-sm-8">@Model.Quantity</dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-6">
+                            @if (!string.IsNullOrEmpty(Model.ImagePath))
+                            {
+                                <label class="form-label">Item Image:</label>
+                                <div>
+                                    <img src="@Model.ImagePath" alt="@Model.Name" class="img-thumbnail" style="max-width: 200px; max-height: 200px;" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Back to List
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash"></i> Delete Item
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Inventory Management</h1>
+    <p class="lead">Manage your inventory items efficiently with our comprehensive system.</p>
+    
+    <div class="row mt-4">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Quick Actions</h5>
+                    <div class="d-grid gap-2">
+                        <a asp-controller="Inventory" asp-action="Index" class="btn btn-primary btn-lg">
+                            <i class="fas fa-boxes"></i> View Inventory
+                        </a>
+                        <a asp-controller="Inventory" asp-action="Create" class="btn btn-success btn-lg">
+                            <i class="fas fa-plus"></i> Add New Item
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-list fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Track Items</h5>
+                    <p class="card-text">Keep track of all your inventory items with detailed information.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-chart-bar fa-3x text-success mb-3"></i>
+                    <h5 class="card-title">Monitor Quantities</h5>
+                    <p class="card-text">Monitor stock levels and get alerts for low inventory items.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-image fa-3x text-info mb-3"></i>
+                    <h5 class="card-title">Image Support</h5>
+                    <p class="card-text">Upload images for your items to make identification easier.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
