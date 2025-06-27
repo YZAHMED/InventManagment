@@ -221,6 +221,5 @@ This project demonstrates my understanding of ASP.NET Core, Entity Framework, LI
 
 ---
 
-**Student Name**: [Your Name]  
-**Course**: Content Management Systems  
-**Date**: [Current Date] 
+**Student Name**: Yaqoob Zahoor Ahmed 
+**Course**: Web Development
